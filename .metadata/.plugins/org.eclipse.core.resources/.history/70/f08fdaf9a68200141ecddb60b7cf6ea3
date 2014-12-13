@@ -17,7 +17,6 @@ public class Main_activity extends JFrame{
 	JPanel pnlButtons;
 	String strImg;
 	JPanel pnlImg; 
-	Image image;
 	public static void main(String[] args){
 		new Main_activity("Test UI of Cara");		
 	}
@@ -33,7 +32,7 @@ public class Main_activity extends JFrame{
 	public void init(){
 
 
-		image = new ImageIcon("sample.gif").getImage();
+		
 		pnlMain = getMainPanel();
 		this.getContentPane().add(pnlMain);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +51,7 @@ public class Main_activity extends JFrame{
 	}
 	private JPanel getTitlePanel(){
 		JPanel pnl = new JPanel();
-		JLabel lbTitle = new JLabel("Cara测试界面0.04",JLabel.CENTER);
+		JLabel lbTitle = new JLabel("Cara测试界面0.03",JLabel.CENTER);
 		lbTitle.setFont(new Font("黑体", Font.PLAIN, 32));
 		pnl.add(lbTitle);
 		return pnl;
@@ -68,9 +67,8 @@ public class Main_activity extends JFrame{
 				// TODO Auto-generated method stub
 				int i=imgChooser.showOpenDialog(Main_activity.this);
 				if(i==imgChooser.APPROVE_OPTION){
-		            image=new ImageIcon(imgChooser.getSelectedFile().getPath()).getImage();
+		            Image image=new ImageIcon(imgChooser.getSelectedFile().getPath()).getImage();
 //		            image=image.getScaledInstance(400, 400, Image.SCALE_DEFAULT );//调整图像大小400,400
-		            pnlImg = getImgPanel(image);
 				}    
 		        if(i==imgChooser.CANCEL_OPTION)return;
 				}
@@ -103,6 +101,7 @@ public class Main_activity extends JFrame{
 	private JPanel getImgLinePanel(){
 		JPanel pnl = new JPanel();
 		pnl.setBackground(Color.CYAN);
+		Image image = new ImageIcon("sample.gif").getImage();
 		pnlImg = getImgPanel(image);
 		pnlImg.setBackground(Color.DARK_GRAY);
 		JPanel pnlData1 = getData1Panel();

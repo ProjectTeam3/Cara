@@ -16,8 +16,6 @@ public class Main_activity extends JFrame{
 	JPanel pnlTitle;
 	JPanel pnlButtons;
 	String strImg;
-	JPanel pnlImg; 
-	Image image;
 	public static void main(String[] args){
 		new Main_activity("Test UI of Cara");		
 	}
@@ -33,7 +31,7 @@ public class Main_activity extends JFrame{
 	public void init(){
 
 
-		image = new ImageIcon("sample.gif").getImage();
+		
 		pnlMain = getMainPanel();
 		this.getContentPane().add(pnlMain);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,31 +50,14 @@ public class Main_activity extends JFrame{
 	}
 	private JPanel getTitlePanel(){
 		JPanel pnl = new JPanel();
-		JLabel lbTitle = new JLabel("Cara测试界面0.04",JLabel.CENTER);
+		JLabel lbTitle = new JLabel("Cara测试界面0.03",JLabel.CENTER);
 		lbTitle.setFont(new Font("黑体", Font.PLAIN, 32));
 		pnl.add(lbTitle);
 		return pnl;
 	}
 	private JPanel getButtonsPanel(){
-
-		JFileChooser imgChooser=new JFileChooser();
-		btnOpenImg = new JButton("打开");
-		btnOpenImg.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				int i=imgChooser.showOpenDialog(Main_activity.this);
-				if(i==imgChooser.APPROVE_OPTION){
-		            image=new ImageIcon(imgChooser.getSelectedFile().getPath()).getImage();
-//		            image=image.getScaledInstance(400, 400, Image.SCALE_DEFAULT );//调整图像大小400,400
-		            pnlImg = getImgPanel(image);
-				}    
-		        if(i==imgChooser.CANCEL_OPTION)return;
-				}
-		});
-
 		
+		btnOpenImg = new JButton("打开");
 		btnGo = new JButton("生成");
 		btnLeft = new JButton("←");
 		btnRight = new JButton("→");
@@ -103,7 +84,8 @@ public class Main_activity extends JFrame{
 	private JPanel getImgLinePanel(){
 		JPanel pnl = new JPanel();
 		pnl.setBackground(Color.CYAN);
-		pnlImg = getImgPanel(image);
+		Image image = new ImageIcon("sample.gif").getImage();
+		JPanel pnlImg = getImgPanel(image);
 		pnlImg.setBackground(Color.DARK_GRAY);
 		JPanel pnlData1 = getData1Panel();
 		JPanel pnlData2 = getData2Panel();
@@ -119,8 +101,8 @@ public class Main_activity extends JFrame{
 		pnl.add(pnlData1, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 0;
-		gbc.ipadx = image.getWidth(this);
-		gbc.ipady = image.getHeight(this);
+		gbc.ipady = image.getWidth(null);
+		gbc.ipadx = image.getHeight(null)(null);
 		gbc.weightx = 0;
 		pnl.add(pnlImg, gbc);
 		gbc.gridx = 2;
