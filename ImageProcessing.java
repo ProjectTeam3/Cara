@@ -8,10 +8,19 @@ import javax.imageio.ImageIO;
 
 public class ImageProcessing {
 	BufferedImage original;
-	int threshold,width,height;
+	int threshold;
+	int width;
+	int height;
 	int[][] gray;
 	int[][] binary;
 	int[][] rode;
+	float[] frequency;
+	float[] frequency1;
+	float[] cord;
+	int[] number;
+	int realNumber;
+	int num;
+	float[] result;
 	ImageProcessing(String address) throws IOException{
 		original = ImageIO.read(new File(address));
 		width = original.getWidth();
@@ -19,7 +28,14 @@ public class ImageProcessing {
 		gray = new int[width][height];
 		binary = new int[width][height];
 		rode = new int[width][height];
+		frequency = new float[width];
+		frequency1 = new float[width];
+		number = new int[width];
+		cord = new float[width];
+		result = new float[3];
 		threshold = 0;
+		realNumber=-1;
+		num=0;
 	}
 	public void getGray(){
 		int rgb,r,g,b,pixel;
@@ -98,7 +114,7 @@ public class ImageProcessing {
 				}
 			}
 		}
-		for (int i=0;i<height;i++){
+		for (int i=0;i<height/2;i++){
 			for (int j=0;j<width;j++){
 				if (rode[j][i]==1)
 					System.out.print(" ");
@@ -108,12 +124,35 @@ public class ImageProcessing {
 			System.out.println();
 		}
 	}
+	
+	public void find(){
+		for (int i=0;i<width;i++){
+			number[i]=0;
+			frequency[i]=0;
+			for (int j=0;j<(height/2);j++){
+				if(rode[i][j]==1){
+					frequency[i]+=(float) (180.0-((float)j)/((float)height)*155.0);
+					number[i]++;
+				}
+			}
+			if (number[i]!=0){
+				realNumber++;
+				frequency1[i]=frequency[i]/number[i];
+			}
+		}
+		result[0]=frequency1[realNumber/6];
+		result[1]=frequency1[realNumber/2];
+		result[2]=frequency1[realNumber*5/6];
+	}
 	public static void main(String[] args) throws IOException {
 		ImageProcessing ip = new ImageProcessing("D:\\sample.gif");
 		ip.getGray();
 		ip.ostu();
 		ip.getBinary();
 		ip.corrode();
+		ip.binary=ip.rode;
+		ip.corrode();
+		ip.find();
 	}
 
 }
