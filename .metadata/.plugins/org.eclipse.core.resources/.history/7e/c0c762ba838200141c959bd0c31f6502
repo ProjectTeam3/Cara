@@ -1,0 +1,27 @@
+package test1;
+
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Test_ui implements ActionListener{
+	JButton button;
+	
+	public static void main(String[] args){
+		Test_ui gui = new Test_ui();
+		gui.go();
+	}		
+	public void go(){
+		JFrame frame;
+		frame = new JFrame();
+		button =  new JButton("click to Auto-Analise");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(button);
+		frame.setSize(500, 500);
+		frame.setVisible(true);
+		button.addActionListener(this);
+
+	}
+	public void actionPerformed(ActionEvent event){
+		button.setText("Clicked");
+	}
+}

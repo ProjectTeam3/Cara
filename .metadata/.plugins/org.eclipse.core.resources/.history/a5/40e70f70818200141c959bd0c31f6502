@@ -1,0 +1,19 @@
+package test1;
+
+import javax.swing.*;
+import java.awt.event;
+public class Test_ui {
+	public static void main(String[] args){
+		JFrame frame = new JFrame();
+		JButton button =  new JButton("click to Auto-Analise");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(button);
+		frame.setSize(500, 500);
+		frame.setVisible(true);
+		
+		
+	
+	public void change_text(JButton button){
+		button.setText("Clicked");
+	}
+}

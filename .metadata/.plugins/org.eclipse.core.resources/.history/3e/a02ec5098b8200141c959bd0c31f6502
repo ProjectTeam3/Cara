@@ -1,0 +1,30 @@
+package test1;
+import javax.swing.*;
+import java.awt.*;
+public class Main_activity {
+	static JFrame frame;
+	JButton btnOpenImg;
+	JButton btnLeft;
+	JButton btnRight;
+	JButton btnQuit;
+	JPanel pnl;
+	
+	public void main(){
+		init();
+		
+		GridBagLayout layout = new GridBagLayout();
+		
+		
+		
+	}
+	private void init(){
+		frame = new JFrame();
+		frame.setSize(500, 500);
+		frame.setVisible(true);
+		btnOpenImg = new JButton("´ò¿ª");
+		btnLeft = new JButton("¡û");
+		btnRight = new JButton("¡ú");
+		btnQuit = new JButton("ÍË³ö");
+		
+	}
+}

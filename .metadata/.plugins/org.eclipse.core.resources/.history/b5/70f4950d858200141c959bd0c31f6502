@@ -1,0 +1,29 @@
+package test1;
+
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Test_ui(){
+	public JButton button;
+	public JButton button2;
+	
+	public static void main(String[] args){
+		Test_ui gui = new Test_ui();
+		gui.go();
+	}		
+	public void go(){
+		JFrame frame;
+		frame = new JFrame();
+		button =  new JButton("click to Auto-Analise");
+
+		button2 =  new JButton("2");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(button);
+		frame.getContentPane().add(button2);
+		frame.setSize(500, 500);
+		frame.setVisible(true);
+		button.addActionListener(this);
+		button2.addActionListener(this);
+
+	}
+}
