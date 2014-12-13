@@ -17,10 +17,9 @@ public class Main_activity extends JFrame{
 	JPanel pnlButtons;
 	String strImg;
 	JPanel pnlImg; 
-	static Image image;
+	Image image;
 	TestImage tImg;
 	public static void main(String[] args){
-		image = new ImageIcon("sample.gif").getImage();
 		new Main_activity("Test UI of Cara");		
 	}
 	public Main_activity(String title){
@@ -34,6 +33,8 @@ public class Main_activity extends JFrame{
 	}
 	public void init(){
 
+
+		image = new ImageIcon("sample.gif").getImage();
 		pnlMain = getMainPanel();
 		this.getContentPane().add(pnlMain);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,9 +72,7 @@ public class Main_activity extends JFrame{
 		            image=new ImageIcon(imgChooser.getSelectedFile().getPath()).getImage();
 //		            image=image.getScaledInstance(400, 400, Image.SCALE_DEFAULT );//调整图像大小400,400
 		            tImg.setImg(image);
-				}
-				tImg.repaint();
-				pnlImgLine.repaint();
+				}    
 		        if(i==imgChooser.CANCEL_OPTION)return;
 				}
 		});

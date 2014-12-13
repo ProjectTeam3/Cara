@@ -71,9 +71,7 @@ public class Main_activity extends JFrame{
 		            image=new ImageIcon(imgChooser.getSelectedFile().getPath()).getImage();
 //		            image=image.getScaledInstance(400, 400, Image.SCALE_DEFAULT );//调整图像大小400,400
 		            tImg.setImg(image);
-				}
-				tImg.repaint();
-				pnlImgLine.repaint();
+				}   tImg.repaint();
 		        if(i==imgChooser.CANCEL_OPTION)return;
 				}
 		});
