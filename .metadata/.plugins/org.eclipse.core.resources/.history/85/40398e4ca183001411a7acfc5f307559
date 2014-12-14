@@ -55,7 +55,7 @@ public class Main_activity extends JFrame{
 	}
 	private JPanel getTitlePanel(){
 		JPanel pnl = new JPanel();
-		JLabel lbTitle = new JLabel("Cara测试界面0.1",JLabel.CENTER);
+		JLabel lbTitle = new JLabel("Cara测试界面0.04",JLabel.CENTER);
 		lbTitle.setFont(new Font("黑体", Font.PLAIN, 32));
 		pnl.add(lbTitle);
 		return pnl;

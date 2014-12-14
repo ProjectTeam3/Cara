@@ -10,8 +10,7 @@ public class Main_activity extends JFrame{
 	JButton btnLeft;
 	JButton btnGo;
 	JButton btnFresh;
-	int Mx = 500;
-	int My = 500;
+	
 	JButton btnRight;
 	JButton btnQuit;
 	JPanel pnlMain;
@@ -28,7 +27,7 @@ public class Main_activity extends JFrame{
 	}
 	public Main_activity(String title){
 		super(title);
-		this.setSize(Mx, My);
+		this.setSize(500, 500);
 		this.setVisible(true);
 		init();
 		this.getContentPane().add(pnlMain);
@@ -55,7 +54,7 @@ public class Main_activity extends JFrame{
 	}
 	private JPanel getTitlePanel(){
 		JPanel pnl = new JPanel();
-		JLabel lbTitle = new JLabel("Cara测试界面0.1",JLabel.CENTER);
+		JLabel lbTitle = new JLabel("Cara测试界面0.04",JLabel.CENTER);
 		lbTitle.setFont(new Font("黑体", Font.PLAIN, 32));
 		pnl.add(lbTitle);
 		return pnl;
@@ -86,15 +85,9 @@ public class Main_activity extends JFrame{
 				gbc.ipady = image.getHeight(pnlImgLine);
 				if (gbc.ipady>500) gbc.ipady = gbc.ipadx/(gbc.ipadx/500);;
 				gbc.weightx = 0;
-				Mx = gbc.ipadx+ 150;
-				My = gbc.ipady+ 150;
-						
 				pnlImgLine.add(pnlImg, gbc);
 				pnlImgLine.repaint();
-				Main_activity.this.setSize(Mx,My);
-				Main_activity.this.dispose();
-				Main_activity.this.setVisible(true);
-				
+				Main_activity.this.repaint();
 		        if(i==imgChooser.CANCEL_OPTION)return;
 				}
 		});
@@ -105,8 +98,8 @@ public class Main_activity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-//				pnlImgLine.repaint();
-				pnlMain.repaint();
+				pnlImgLine.repaint();
+				
 			}
 		});
 		btnGo = new JButton("生成");

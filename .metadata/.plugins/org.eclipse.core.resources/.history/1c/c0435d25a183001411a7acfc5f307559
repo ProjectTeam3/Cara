@@ -55,7 +55,7 @@ public class Main_activity extends JFrame{
 	}
 	private JPanel getTitlePanel(){
 		JPanel pnl = new JPanel();
-		JLabel lbTitle = new JLabel("Cara测试界面0.1",JLabel.CENTER);
+		JLabel lbTitle = new JLabel("Cara测试界面0.04",JLabel.CENTER);
 		lbTitle.setFont(new Font("黑体", Font.PLAIN, 32));
 		pnl.add(lbTitle);
 		return pnl;
@@ -86,12 +86,11 @@ public class Main_activity extends JFrame{
 				gbc.ipady = image.getHeight(pnlImgLine);
 				if (gbc.ipady>500) gbc.ipady = gbc.ipadx/(gbc.ipadx/500);;
 				gbc.weightx = 0;
-				Mx = gbc.ipadx+ 150;
-				My = gbc.ipady+ 150;
+				Mx = gbc.ipadx+ 50;
+				My = gbc.ipady+ 50;
 						
 				pnlImgLine.add(pnlImg, gbc);
 				pnlImgLine.repaint();
-				Main_activity.this.setSize(Mx,My);
 				Main_activity.this.dispose();
 				Main_activity.this.setVisible(true);
 				

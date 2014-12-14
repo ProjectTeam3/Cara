@@ -9,9 +9,6 @@ public class Main_activity extends JFrame{
 	JButton btnOpenImg;
 	JButton btnLeft;
 	JButton btnGo;
-	JButton btnFresh;
-	int Mx = 500;
-	int My = 500;
 	JButton btnRight;
 	JButton btnQuit;
 	JPanel pnlMain;
@@ -28,7 +25,7 @@ public class Main_activity extends JFrame{
 	}
 	public Main_activity(String title){
 		super(title);
-		this.setSize(Mx, My);
+		this.setSize(500, 500);
 		this.setVisible(true);
 		init();
 		this.getContentPane().add(pnlMain);
@@ -55,7 +52,7 @@ public class Main_activity extends JFrame{
 	}
 	private JPanel getTitlePanel(){
 		JPanel pnl = new JPanel();
-		JLabel lbTitle = new JLabel("Cara测试界面0.1",JLabel.CENTER);
+		JLabel lbTitle = new JLabel("Cara测试界面0.04",JLabel.CENTER);
 		lbTitle.setFont(new Font("黑体", Font.PLAIN, 32));
 		pnl.add(lbTitle);
 		return pnl;
@@ -76,39 +73,20 @@ public class Main_activity extends JFrame{
 		            tImg.setImg(image);
 				}
 				tImg.repaint();
-				Main_activity.this.repaint();
 				GridBagConstraints gbc=new GridBagConstraints();
 				gbc.fill=GridBagConstraints.BOTH;	
 				gbc.gridx = 1;
 				gbc.gridy = 0;
-				gbc.ipadx = image.getWidth(pnlImgLine);
-				if (gbc.ipadx>500) gbc.ipadx = gbc.ipadx/(gbc.ipadx/500);
-				gbc.ipady = image.getHeight(pnlImgLine);
-				if (gbc.ipady>500) gbc.ipady = gbc.ipadx/(gbc.ipadx/500);;
+				gbc.ipadx = image.getWidth(null);
+				gbc.ipady = image.getHeight(null);
 				gbc.weightx = 0;
-				Mx = gbc.ipadx+ 150;
-				My = gbc.ipady+ 150;
-						
 				pnlImgLine.add(pnlImg, gbc);
 				pnlImgLine.repaint();
-				Main_activity.this.setSize(Mx,My);
-				Main_activity.this.dispose();
-				Main_activity.this.setVisible(true);
-				
 		        if(i==imgChooser.CANCEL_OPTION)return;
 				}
 		});
 
-		btnFresh = new JButton("刷新");
-		btnFresh.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-//				pnlImgLine.repaint();
-				pnlMain.repaint();
-			}
-		});
+		
 		btnGo = new JButton("生成");
 		btnQuit = new JButton("退出");
 		JPanel pnl = new JPanel();
@@ -126,11 +104,8 @@ public class Main_activity extends JFrame{
 		pnl.add(btnGo, gbc);
 		gbc.gridx = 2;
 		gbc.gridy = 0;
-		pnl.add(btnQuit, gbc);
-		gbc.gridx = 3;
-		gbc.gridy = 0;
 		gbc.gridwidth=0;
-		pnl.add(btnFresh, gbc);
+		pnl.add(btnQuit, gbc);
 		return pnl;
 	}
 	private JPanel getImgLinePanel(){
@@ -189,37 +164,4 @@ public class Main_activity extends JFrame{
 		pnl.add(lbTitle);
 		return pnl;
 	}
-	private void frsImgLinePanel(JPanel pnl){
-		pnl = new JPanel();
-//		pnl.setBackground(Color.CYAN);
-		tImg = new TestImage(image);
-		pnlImg = tImg;
-		pnlImg.setBackground(Color.DARK_GRAY);
-		JPanel pnlData1 = getData1Panel();
-		JPanel pnlData2 = getData2Panel();
-
-		pnl.setLayout(new GridBagLayout());
-		GridBagConstraints gbc=new GridBagConstraints();
-		gbc.fill=GridBagConstraints.BOTH;	
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth=1;
-		gbc.gridheight=0;
-		gbc.weightx = 1;
-		pnl.add(pnlData1, gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		gbc.ipadx = image.getWidth(this);
-		gbc.ipady = image.getHeight(this);
-		gbc.weightx = 0;
-		pnl.add(pnlImg, gbc);
-		gbc.gridx = 2;
-		gbc.gridy = 0;
-		gbc.weightx = 1;
-		gbc.gridwidth=0;
-		gbc.ipady = 0;
-		gbc.ipadx = 0;
-		pnl.add(pnlData2, gbc);
-	}
-	
 }
