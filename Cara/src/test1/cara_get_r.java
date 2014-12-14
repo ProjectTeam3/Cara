@@ -3,17 +3,17 @@ import java.lang.Math;
 
 public class cara_get_r {
 
-	final static double MIN=0.0;
-	final static double MAX=999999.0;
+	final double MIN=0.0;
+	final double MAX=999999.0;
 
-	private static double r;
-	private static double tempr;
-	private static double n;
-	static double temp;
-	static double max;
-	static double min;
+	private double r;
+	private double tempr;
+	private double n;
+	double temp;
+	double max;
+	double min;
 	
-	public static double calculcateR(int flag, double frequency) {
+	public double calculcateR(int flag, double frequency) {
 		min=MIN;
 		max=MAX;
 		switch(flag) {
