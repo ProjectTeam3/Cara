@@ -1,9 +1,9 @@
 package com.alex.image_processing;
 
 public class cara_cal {
-	     double ans;
-		 double r1;
-		 double r2;
+	     	double ans;
+		double r1;
+		double r2;
 		cara_get_r cr;
 		cara_get_v cv;
 		double frequency1;
