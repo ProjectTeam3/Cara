@@ -5,7 +5,7 @@ import java.lang.Math;
 public class cara_get_r {
 
 	final static double MIN=0.0;
-	final static double MAX=99999.0;
+	final static double MAX=999999.0;
 
 	private static double r;
 	private static double tempr;
@@ -15,6 +15,8 @@ public class cara_get_r {
 	static double min;
 	
 	public static double calculcateR(int flag, double frequency) {
+		min=MIN;
+		max=MAX;
 		switch(flag) {
 		case 1:
 			/* first model here */
@@ -24,13 +26,13 @@ public class cara_get_r {
 			while( Math.abs( n-temp ) >= 0.0001 ) {
 				if( n > temp ) {
 					max = tempr;
-					tempr = ( min + tempr ) / 2;
+					tempr = ( min + max ) / 2.0;
 				}
 				else {
-					min=tempr;
-					tempr=(tempr + max)/2;
+					min = tempr;
+					tempr = ( min + max ) / 2.0;
 				}
-				temp = 1.36 * Math.pow(tempr, (-2.1)) + 168 * Math.pow(tempr, (-6.13));
+				temp = 1.36 * Math.pow(tempr, (-2.1)) + 168.0 * Math.pow(tempr, (-6.13));
 			}
 
 		    r = tempr * 6.963 * Math.pow(10,8);
