@@ -6,6 +6,8 @@ import java.awt.event.*;
 import java.io.*;
 
 public class Main_activity extends JFrame{
+	ImageProcessing IP;
+	String strInfo;
 	JButton btnOpenImg;
 	JButton btnLeft;
 	JButton btnGo;
@@ -63,6 +65,8 @@ public class Main_activity extends JFrame{
 	private JPanel getButtonsPanel(){
 
 		JFileChooser imgChooser=new JFileChooser();
+
+		JFileChooser infoChooser=new JFileChooser();
 		btnOpenImg = new JButton("打开");
 		btnOpenImg.addActionListener(new ActionListener() {
 			
@@ -71,7 +75,9 @@ public class Main_activity extends JFrame{
 				// TODO Auto-generated method stub
 				int i=imgChooser.showOpenDialog(Main_activity.this);
 				if(i==imgChooser.APPROVE_OPTION){
-		            image=new ImageIcon(imgChooser.getSelectedFile().getPath()).getImage();
+					strImg = imgChooser.getSelectedFile().getPath();
+					System.out.println(strImg);
+		            image=new ImageIcon(strImg).getImage();
 //		            image=image.getScaledInstance(400, 400, Image.SCALE_DEFAULT );//调整图像大小400,400
 		            tImg.setImg(image);
 				}
@@ -87,7 +93,9 @@ public class Main_activity extends JFrame{
 				if (gbc.ipady>500) gbc.ipady = gbc.ipadx/(gbc.ipadx/500);;
 				gbc.weightx = 0;
 				Mx = gbc.ipadx+ 150;
+				if (Mx<500) Mx = 500;
 				My = gbc.ipady+ 150;
+				if (My<500) My = 500;
 						
 				pnlImgLine.add(pnlImg, gbc);
 				pnlImgLine.repaint();
@@ -99,17 +107,41 @@ public class Main_activity extends JFrame{
 				}
 		});
 
-		btnFresh = new JButton("刷新");
+		btnFresh = new JButton("信息文件");
 		btnFresh.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 //				pnlImgLine.repaint();
-				pnlMain.repaint();
+				int i=infoChooser.showOpenDialog(Main_activity.this);
+				if(i==infoChooser.APPROVE_OPTION){
+					strInfo = infoChooser.getSelectedFile().getPath();
+					System.out.println(strInfo);
+				}
 			}
 		});
 		btnGo = new JButton("生成");
+		btnGo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					IP =  new ImageProcessing(strImg,strInfo);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					double v = IP.process();
+					System.out.println("v = "+v);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnQuit = new JButton("退出");
 		JPanel pnl = new JPanel();
 		pnl.setLayout(new GridBagLayout());

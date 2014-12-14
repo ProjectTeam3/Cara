@@ -1,5 +1,4 @@
-package com.alex.image_processing;
-
+package test1;
 public class cara_cal {
 	     	double ans;
 		double r1;
@@ -34,4 +33,3 @@ public class cara_cal {
 		
 
 }
-

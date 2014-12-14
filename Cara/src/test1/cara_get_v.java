@@ -1,4 +1,4 @@
-package com.alex.image_processing;
+package test1;
 
 public class cara_get_v {
 	private  double v;

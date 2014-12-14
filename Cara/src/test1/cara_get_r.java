@@ -1,5 +1,4 @@
-package com.alex.image_processing;
-
+package test1;
 import java.lang.Math;
 
 public class cara_get_r {

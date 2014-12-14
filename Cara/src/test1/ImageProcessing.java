@@ -1,4 +1,4 @@
-package com.alex.image_processing;
+package test1;
 
 import java.io.*;
 import java.awt.image.*;
