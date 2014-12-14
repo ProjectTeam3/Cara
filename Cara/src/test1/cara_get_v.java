@@ -1,11 +1,11 @@
-package cara_calculcate;
+package com.alex.image_processing;
 
 public class cara_get_v {
-
-	private static double v;
+	private  double v;
 	
-	public static double calculcateV(double r1, double r2, int timestart, int timeend) {
+	public double calculcateV(double r1, double r2, int timestart, int timeend) {
 		v = Math.abs(r1 - r2) / Math.abs(timestart - timeend);
 		return v;
 	}
+
 }
