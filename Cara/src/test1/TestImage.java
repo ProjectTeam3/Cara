@@ -9,8 +9,8 @@ public class TestImage extends JPanel{
 	public TestImage(Image im){
 		this.im = im;
 		
-		int width =Toolkit.getDefaultToolkit().getScreenSize().width;
-		int height =Toolkit.getDefaultToolkit().getScreenSize().height;
+		int width =im.getWidth(this);
+		int height = im.getHeight(this);
 		setSize(width,height);
 		}
 	public void paintComponent(Graphics g){

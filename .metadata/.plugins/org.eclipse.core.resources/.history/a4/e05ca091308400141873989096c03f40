@@ -1,0 +1,21 @@
+package test1;
+
+import javax.swing.*;
+import javax.swing.JTextArea;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JScrollPane;
+
+public class DataLine extends JPanel{
+	
+	public DataLine(String addressImg) {
+		setLayout(new BorderLayout(5, 5));	
+		JTextArea lalala = new JTextArea();
+		JScrollPane scrollPane = new JScrollPane();
+		add(scrollPane, BorderLayout.CENTER);
+		
+	}
+	
+	
+}

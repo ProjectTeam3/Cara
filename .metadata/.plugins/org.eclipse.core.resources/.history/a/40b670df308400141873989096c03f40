@@ -1,0 +1,25 @@
+package test1;
+
+import javax.swing.*;
+
+import java.util.ArrayList;
+import java.awt.BorderLayout;
+
+import javax.swing.JScrollPane;
+
+public class DataLine extends JPanel{
+	ArrayList<JLabel> Data;
+	
+	public DataLine(Image image) {
+		setLayout(new BorderLayout(5, 5));	
+		JScrollPane scrollPane1 = new JScrollPane();
+		JScrollPane scrollPane2 = new JScrollPane();
+		add(scrollPane1, BorderLayout.WEST);
+		add(scrollPane1, BorderLayout.EAST);
+		
+			
+		
+	}
+	
+	
+}
