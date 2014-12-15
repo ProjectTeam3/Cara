@@ -26,10 +26,7 @@ public class Main_activity extends JFrame{
 	TestImage tImg;
 	public static void main(String[] args){
 		image = new ImageIcon("sample.gif").getImage();
-		Main_activity MA;
-		MA = new Main_activity("Test UI of Cara");
-		MA.dispose();
-		MA.setVisible(true);
+		new Main_activity("Test UI of Cara");		
 	}
 	public Main_activity(String title){
 		super(title);
@@ -37,7 +34,6 @@ public class Main_activity extends JFrame{
 		this.setVisible(true);
 		init();
 		this.getContentPane().add(pnlMain);
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
@@ -140,7 +136,6 @@ public class Main_activity extends JFrame{
 				try {
 					double v = IP.process();
 					System.out.println("v = "+v);
-					JOptionPane.showMessageDialog(null,"Speed is "+v);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -258,27 +253,5 @@ public class Main_activity extends JFrame{
 		gbc.ipadx = 0;
 		pnl.add(pnlData2, gbc);
 	}
-	private void showDataFromFile(String address2) throws NumberFormatException, IOException{
-		FileInputStream fis = new FileInputStream(address2);
-		InputStreamReader isr = new InputStreamReader(fis);
-		LineNumberReader lnr = new LineNumberReader(isr);
-		int timestart;
-		int timeend;
-		
-		String s =null;
-		int i,t=1;
-		while ((s=lnr.readLine())!=null && t<=2){
-			i=Integer.parseInt(s);
-			if (t==1){
-				timestart=i;
-			}
-			else{
-				timeend=i;
-			}
-			t++;
-		}
-		if (t<=2){
-			System.out.println("error: not enough information!");
-		}
-	}
+	
 }
