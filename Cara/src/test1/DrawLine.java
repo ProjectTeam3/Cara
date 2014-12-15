@@ -6,21 +6,22 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
-
+import test1.Main_activity;
 
 class DrawLinePanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	private int startX = 0;
-	private int startY = 0;
-	private int endX = 0;
-	private int endY = 0;
+	static int startX = 0;
+	static int startY = 0;
+	static int endX = 0;
+	static int endY = 0;
+	static boolean fla = false;
 	Graphics2D g2;
 	JPopupMenu p = new JPopupMenu();
 	JMenuItem red = new JMenuItem("ºìÉ«");
 	JMenuItem blue = new JMenuItem("À¶É«");
 	JMenuItem green = new JMenuItem("ÂÌÉ«");
 	int flag=0;
-	Image im;
+	static Image im;
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(this.im, 0, 0, getWidth(), getHeight(), this);
@@ -66,8 +67,10 @@ class DrawLinePanel extends JPanel implements ActionListener {
 					g.setColor(Color.BLACK);
 				}
 				g.drawLine(startX, startY, endX, endY);
+				
 			} else {
 				p.show(getParent(), event.getX(), event.getY());
+				
 			}
 		}
 	}

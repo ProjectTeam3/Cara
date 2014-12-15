@@ -15,7 +15,7 @@ public class Main_activity extends JFrame{
 	int My = 500;
 	JButton btnQuit;
 	JPanel pnlMain;
-	DataLine DL;
+	static DataLine DL;
 	JPanel pnlImgLine;
 	JPanel pnlTitle;
 	JPanel pnlButtons;
@@ -27,7 +27,7 @@ public class Main_activity extends JFrame{
 	TestImage tImg;
 	public static void main(String[] args){
 		image = new ImageIcon("sample.gif").getImage();
-		
+		System.out.println("FIrst!");
 		MA = new Main_activity("Test UI of Cara");
 //		MA.dispose();
 //		MA.setVisible(true);
@@ -35,10 +35,8 @@ public class Main_activity extends JFrame{
 	public Main_activity(String title){
 		super(title);
 		this.setSize(Mx, My);
-		
 		init();
 		this.getContentPane().add(pnlMain);
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
@@ -71,6 +69,16 @@ public class Main_activity extends JFrame{
 	private JPanel getButtonsPanel(){
 		JFileChooser imgChooser=new JFileChooser();
 		JFileChooser infoChooser=new JFileChooser();
+		JButton btnDraw = new JButton("直线数据");
+		btnDraw.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DL.changeData1("StartX = "+DL.pnlDraw.startX+" StartY = "+DL.pnlDraw.startY);
+				DL.changeData2("EndX = "+DL.pnlDraw.endX+" EndY = "+DL.pnlDraw.endY);
+			}
+		});
 		btnOpenImg = new JButton("打开");
 		btnOpenImg.addActionListener(new ActionListener() {			
 			@Override
@@ -81,7 +89,10 @@ public class Main_activity extends JFrame{
 					strImg = imgChooser.getSelectedFile().getPath();
 					System.out.println(strImg);
 		            image=new ImageIcon(strImg).getImage();
-		            DL = new DataLine(image);
+		            DL.pnlDraw.im = image;
+		            DL.pnlDraw.repaint();
+//		            MA.dispose();
+//		            MA.setVisible(true);
 				}
 				
 //			E	Main_activity.this.dispose();
@@ -116,7 +127,7 @@ public class Main_activity extends JFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				try {
+				try {			
 					double v = IP.process();
 					System.out.println("v = "+v);
 					JOptionPane.showMessageDialog(null,"Speed is "+v);
@@ -156,8 +167,11 @@ public class Main_activity extends JFrame{
 		GridBagConstraints gbc3=new GridBagConstraints();		
 		gbc3.gridx = 3;
 		gbc3.gridy = 0;
-		gbc3.gridwidth=0;
 		pnl.add(btnFresh, gbc3);
+		GridBagConstraints gbc4=new GridBagConstraints();	
+		gbc4.gridx = 4;
+		gbc4.gridy = 0;
+		pnl.add(btnDraw, gbc4);
 		return pnl;
 	}
 
