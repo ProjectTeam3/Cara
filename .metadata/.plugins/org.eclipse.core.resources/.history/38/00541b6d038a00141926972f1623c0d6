@@ -1,0 +1,56 @@
+package ui;
+import javax.rmi.CORBA.Util;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+
+public class Mode_decide extends JFrame{
+	private int Mx = 1200, My = 800;
+	private JPanel contentPane;//创建面板
+	private JButton btnToCountFrm;//创建按钮1
+	private JButton btnToSQL;//创建按钮2
+	private JLabel lbTitle;
+	public Mode_decide(){
+		super("Welcome to use Cara3.0");
+		this.setResizable(false);
+		this.setSize(Mx, My);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.contentPane=new JPanel();//初始化面板
+		this.contentPane.setLayout(null);
+//		this.lbTitle
+		this.btnToCountFrm=new JButton("btn1");
+		this.btnToCountFrm.setBounds(400,300,150,70);
+		this.contentPane.add(btnToCountFrm);
+		this.btnToSQL=new JButton("按钮2");
+		this.contentPane.add(btnToSQL);
+		this.btnToSQL.setBounds(650, 300, 150, 70);
+		this.add(this.contentPane);
+		this.setVisible(true);
+	}
+    public static JButton createJButton(String imgIcon, String imgRO, String imgPre,ActionListener listener) {  
+    	Image image1 = new ImageIcon(imgIcon).getImage();
+    	Image image2 = new ImageIcon(imgRO).getImage();
+    	Image image3 = new ImageIcon(imgPre).getImage();
+        JButton jb = new JButton();  
+        jb.setBorderPainted(false);  
+        jb.setFocusPainted(false);  
+        jb.setContentAreaFilled(false);  
+        jb.setDoubleBuffered(true);  
+        jb.setIcon(new ImageIcon(image1));  
+        jb.setRolloverIcon(new ImageIcon(image2));  
+        jb.setPressedIcon(new ImageIcon(image3));  
+        jb.setOpaque(false);  
+        jb.setFocusable(false);  
+//        jb.setActionCommand(cmd);  
+        jb.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));  
+        jb.addActionListener(listener);  
+        return jb;  
+    }  
+	public static void main(String[] args){
+		Mode_decide example=new Mode_decide();
+
+		System.out.println("Mode decide Frame");
+	}
+}

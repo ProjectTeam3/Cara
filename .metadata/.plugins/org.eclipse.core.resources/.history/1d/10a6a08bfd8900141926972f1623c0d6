@@ -1,0 +1,35 @@
+package ui;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+
+public class Mode_decide extends JFrame{
+	private int Mx = 800, My = 640;
+	private JPanel contentPane;//创建面板
+	private JButton btnToCountFrm;//创建按钮1
+	private JButton btnToSQL;//创建按钮2
+	public static void main(String[] args){
+		System.out.println("Mode decide Frame");
+		
+	}
+	public Mode_decide(){
+		super("Welcome to use Cara3.0");
+		this.setResizable(false);
+		this.setSize(Mx, My);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.contentPane=new JPanel();//初始化面板
+		this.contentPane.setLayout(null);//设置布局NULL
+		this.button1=new JButton("按钮1");//给按钮名字
+		this.button1.setBounds(6,6,90,30);//设置按钮名字
+		this.contentPane.add(button1);//加入面板中
+		this.button2=new JButton("按钮2");
+		this.contentPane.add(button2);
+		this.button2.setBounds(138, 26, 90, 30);
+		this.add(this.contentPane);
+		this.setVisible(true);
+	}
+	
+	
+}

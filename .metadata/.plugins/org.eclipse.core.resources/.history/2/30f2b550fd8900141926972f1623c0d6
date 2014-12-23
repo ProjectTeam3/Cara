@@ -1,0 +1,22 @@
+package ui;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+
+public class Mode_decide extends JFrame{
+	int Mx,My;
+	
+	public static void main(String[] args){
+		System.out.println("FIrst!");
+	}
+	public Mode_decide(String title){
+		super(title);
+		this.setSize(Mx, My);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+	
+	
+}
