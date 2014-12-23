@@ -19,9 +19,6 @@ class DrawLinePanel extends JPanel implements ActionListener {
 	Graphics2D g2;
 	JPopupMenu p = new JPopupMenu();
 	JMenuItem red = new JMenuItem("红色");
-	JMenuItem blue = new JMenuItem("蓝色");
-	JMenuItem green = new JMenuItem("绿色");
-	int flag=0;
 	static Image im;
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -31,19 +28,18 @@ class DrawLinePanel extends JPanel implements ActionListener {
 	public DrawLinePanel(Image img) {
 		new ArrayList<Line2D>();
 		im = img;
-		p.add(red);
-		p.add(blue);
-		p.add(green);
+//		p.add(red);
 		red.addActionListener(this);
-		blue.addActionListener(this);
-		green.addActionListener(this);
 		addMouseListener(new MouseHandler());
 		
 	}
-
+	public void redd(){
+		this.repaint();
+	}
 	private class MouseHandler extends MouseAdapter {
 		public void mousePressed(MouseEvent event) {// 鼠标按下时
 			if (event.getButton() == MouseEvent.BUTTON1) {
+				redd();
 				startX = event.getX();
 				startY = event.getY();
 			}
@@ -55,18 +51,7 @@ class DrawLinePanel extends JPanel implements ActionListener {
 				endY=event.getY();
 				Container c = (Container) event.getSource();
 				Graphics g = c.getGraphics();
-				if(flag==1){
-					g.setColor(Color.RED);
-				}
-				else if(flag==2){
-					g.setColor(Color.BLUE);
-				}
-				else if(flag==3){
-					g.setColor(Color.GREEN);
-				}
-				else{
-					g.setColor(Color.BLACK);
-				}
+				g.setColor(Color.RED);
 				g.drawLine(startX, startY, endX, endY);
 				
 			} else {
@@ -76,42 +61,10 @@ class DrawLinePanel extends JPanel implements ActionListener {
 		}
 	}
 	
- @Override
- public void actionPerformed(ActionEvent e) {
-  // TODO Auto-generated method stub
-if(e.getSource()==red){
-   flag=1;
-  }
-  if(e.getSource()==blue){
-   flag=2;
-  }
-  if(e.getSource()==green){
-   flag=3;
-  }
- }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==red){	
+		}
+	}
 }
-
-
-
-
-//class DrawLineFrame{
-// private static final long serialVersionUID = 1L;
-// public DrawLineFrame() {
-//  JFrame f=new JFrame();
-//  f.setTitle("鼠标画直线(右键调颜色)");
-//  f.setSize(400, 400);
-//  f.setVisible(true);
-//  Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
-//  f.setLocation((dim.width-f.getWidth())/2,(dim.height-f.getHeight())/2);
-//  f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//  
-//  
-//  
-//  DrawLinePanel panel = new DrawLinePanel(im);//////////////////////
-//  
-//  
-//  
-//  Container container = f.getContentPane();
-//  container.add(panel);
-// }
-//}

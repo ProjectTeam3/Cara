@@ -7,7 +7,7 @@ import java.awt.event.*;
 import java.io.*;
 
 public class Mode_decide extends JFrame{
-	private int Mx = 1200, My = 800;
+	private int Mx = 1200, My = 820;
 	private JPanel btnPane;//创建面板
 	private JPanel pnlBack;//创建面板
 	private JButton btnToCountFrm;//创建按钮1
@@ -35,7 +35,7 @@ public class Mode_decide extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				JFrame mainF = new Main_activity("射电暴");  
+				JFrame mainF = new Calc_activity(); 
 				dispose();
 				
 			}

@@ -145,7 +145,9 @@ public class Main_activity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				MA.dispose();
+				JFrame mainF = new Mode_decide();  
+				dispose();
+				
 			}
 		});
 		JPanel pnl = new JPanel();
