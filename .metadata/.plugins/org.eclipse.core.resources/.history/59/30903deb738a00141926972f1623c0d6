@@ -50,7 +50,7 @@ class DrawLinePanel extends JPanel implements ActionListener {
 				Graphics g = c.getGraphics();
 				g.setColor(Color.RED);
 				g.drawLine(startX, startY, endX, endY);
-//				setData(startX, startY, endX, endY);
+				Calc_activity().setData(startX, startY, endX, endY);
 				
 			} else {
 				p.show(getParent(), event.getX(), event.getY());

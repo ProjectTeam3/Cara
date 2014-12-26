@@ -58,10 +58,6 @@ public class Mode_decide extends JFrame{
 	}
 	
 	public void setData(int x1,int y1,int x2,int y2){
-		lineX1 = x1;
-		lineY1 = y1;
-		lineX2 = x2;
-		lineY2 = y2;
 		
 	}
 	public static JButton createJButton(String imgIcon, String imgRO, String imgPre,ActionListener listener) {  

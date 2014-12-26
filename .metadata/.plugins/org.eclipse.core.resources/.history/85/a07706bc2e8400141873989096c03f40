@@ -1,8 +1,0 @@
-package test1;
-
-import javax.swing.JPanel;
-
-public class DataLine extends JPanel{
-	
-	
-}

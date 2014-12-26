@@ -86,7 +86,7 @@ public class Calc_activity extends JFrame{
 		            	imgread = true;
 		            }
 		            pnlData=new DrawLinePanel(imgData.getImage());
-		            pnlData.setBounds(600-(imgData.getIconWidth()/2), (210+175-(imgData.getIconHeight()/2)), imgData.getIconWidth(),imgData.getIconHeight()); 
+		            pnlData.setBounds(600-(imgData.getIconWidth()/2), 210+175-(imgData.getIconHeight()/2), imgData.getIconWidth(),imgData.getIconHeight()); 
 		            pnlData.setLayout(null);
 		            pnlData.setOpaque(false);
 		    		pnlCon.add(pnlData);
