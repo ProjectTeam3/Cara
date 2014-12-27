@@ -1,8 +1,10 @@
 #忽略eclipse的工程文件  
 .classpath  
 .project  
+/metadata
 .metadata/
 .settings/  
 .log
 .metadata/.log
 .metadata/version.ini
+*.xmi
