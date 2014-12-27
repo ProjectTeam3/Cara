@@ -13,11 +13,13 @@ public class Calc_activity extends JFrame{
 
 	private int lineX1,lineY1,lineX2,lineY2;
 	private JPanel pnlCon;//ÄÚÈÝpnl
-	public JPanel pnlData;//Í¼ÏñµÄpnl
+	public JScrollPane pnlData;//Í¼ÏñµÄpnl
 	private JPanel pnlBack;//±³¾°pnl
 	private JButton btnCalc;
 	private JButton btnChsSQL;
 	private JButton btnChsImg;
+//	private JScrollPane jScrollPane2;
+	private ScrollPaneDemo SPD;
 	private JButton btnBack;
 	private JLabel lbBack;
 	private JLabel lbDataImg;
@@ -101,21 +103,35 @@ public class Calc_activity extends JFrame{
 					}
 		            
 		            lbDataImg = new JLabel(imgData);
+		           
 		            if(imgread){
-		            	pnlData.setVisible(false);//Òþ²Øµô
-		            	pnlCon.remove(pnlData);//É¾³ýpanelÖÐµÄ¿Ø¼þ
-		            }
+//		            	pnlData.setVisible(false);//Òþ²Øµô
+//		            	pnlCon.remove(SPD);//É¾³ýpanelÖÐµÄ¿Ø¼þ
+		            	SPD.dispose();
+		            }  	
 		            else{
 		            	imgread = true;
 		            }
 		            tempdlp = new DrawLinePanel(imgData.getImage(),CA);
-		            pnlData = tempdlp;
-		            pnlData.setBounds(600-(imgData.getIconWidth()/2), (210+175-(imgData.getIconHeight()/2)), imgData.getIconWidth(),imgData.getIconHeight()); 
-		            pnlData.setLayout(null);
-		            pnlData.setOpaque(false);
-		    		pnlCon.add(pnlData);
+//		            pnlData = tempdlp;
+		            SPD = new ScrollPaneDemo(imgData,CA);
+//		            pnlData = SPD.comeonbaby();
+//		            pnlData.setBounds(0,210,1200,350);
+//		            jScrollPane2 = new JScrollPane(lbDataImg);  
+//		   
+//		            jScrollPane2.setPreferredSize(new Dimension(1200, 350));
+//		            jScrollPane2.setBounds(600-(min(9999999,1200)/2), (210+175-(min(9999999,350)/2)), 1200,350); 
+//		            jScrollPane2.setBounds(0,210,1200,350);
+//		    		pnlCon.add(pnlData);
+		    		
 		    		redd();
 				}	
+			}
+
+			private int min(int a, int b) {
+				// TODO Auto-generated method stub
+				if (a<b) return a;
+				else return b;
 			}
 		});
 		this.btnChsImg.setBounds(610,50,150,70);
