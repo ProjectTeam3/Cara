@@ -4,3 +4,5 @@
 .metadata/
 .settings/  
 .log
+.metadata/.log
+.metadata/version.ini
