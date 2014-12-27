@@ -8,7 +8,6 @@ import java.io.*;
 
 public class Mode_decide extends JFrame{
 	private int Mx = 1200, My = 820;
-	private int lineX1,lineY1,lineX2,lineY2;
 	private JPanel btnPane;//创建面板
 	private JPanel pnlBack;//创建面板
 	private JButton btnToCountFrm;//创建按钮1
@@ -17,6 +16,8 @@ public class Mode_decide extends JFrame{
 	
 	public Mode_decide(){
 		super("Welcome to use Cara3.0");
+
+		Mode_decide MD = this;
 		ImageIcon bg = new ImageIcon("uisource/modeBack.jpg");
 	
 		this.setResizable(false);
@@ -36,7 +37,7 @@ public class Mode_decide extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				JFrame mainF = new Calc_activity(); 
+				JFrame mainF = new Calc_activity(MD); 
 				dispose();
 				
 			}
@@ -57,13 +58,7 @@ public class Mode_decide extends JFrame{
 		this.setVisible(true);
 	}
 	
-	public void setData(int x1,int y1,int x2,int y2){
-		lineX1 = x1;
-		lineY1 = y1;
-		lineX2 = x2;
-		lineY2 = y2;
-		
-	}
+
 	public static JButton createJButton(String imgIcon, String imgRO, String imgPre,ActionListener listener) {  
         JButton jb = new JButton();  
         jb.setBorderPainted(false);  

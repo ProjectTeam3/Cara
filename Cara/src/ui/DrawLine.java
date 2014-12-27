@@ -12,6 +12,7 @@ class DrawLinePanel extends JPanel implements ActionListener {
 	static int startY = 0;
 	static int endX = 0;
 	static int endY = 0;
+	private Calc_activity CA; 
 	static boolean fla = false;
 	Graphics2D g2;
 	JPopupMenu p = new JPopupMenu();
@@ -22,13 +23,13 @@ class DrawLinePanel extends JPanel implements ActionListener {
 		g.drawImage(this.im, 0, 0, getWidth(), getHeight(), this);
 	}
  
-	public DrawLinePanel(Image img) {
+	public DrawLinePanel(Image img,Calc_activity xx) {
 		new ArrayList<Line2D>();
 		im = img;
 //		p.add(red);
 		red.addActionListener(this);
 		addMouseListener(new MouseHandler());
-		
+		CA = xx;
 	}
 	public void redd(){
 		this.repaint();
@@ -50,7 +51,7 @@ class DrawLinePanel extends JPanel implements ActionListener {
 				Graphics g = c.getGraphics();
 				g.setColor(Color.RED);
 				g.drawLine(startX, startY, endX, endY);
-//				setData(startX, startY, endX, endY);
+				CA.setData(startX, startY, endX, endY);
 				
 			} else {
 				p.show(getParent(), event.getX(), event.getY());
@@ -58,7 +59,18 @@ class DrawLinePanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-	
+	public int getsx(){
+		return startX;
+	}
+	public int getex(){
+		return endX;
+	}
+	public int getsy(){
+		return startY;
+	}
+	public int getey(){
+		return endY;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

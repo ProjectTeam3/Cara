@@ -11,7 +11,7 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="ui.Main_activity"/>
 <fullyQualifiedTypeName name="ui.Mode_decide"/>
-<fullyQualifiedTypeName name="ui.Calc_activity"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="ui.Calc_activity"/>
 </qualifiedTypeNameHistroy>

@@ -1,4 +1,4 @@
-package com.alex.image_processing;
+package calc;
 
 import java.io.*;
 import java.awt.image.*;
@@ -20,7 +20,7 @@ public class Point {
 	int endpixelx;
 	int endpixely;
 	double speed;
-	Point(String address) throws IOException{
+	public Point(String address) throws IOException{
 		original = ImageIO.read(new File(address));
 		startpixelx=170;
 		startpixely=50;
@@ -75,8 +75,9 @@ public class Point {
 			System.out.println(resultx[1]);
 			cc = new cara_cal(resultHz[0], resultHz[1], resultx[0], resultx[1]);
 			speed=cc.calculcate(1);
+			System.out.println("jiushiwo"+speed);
 			return speed;
 	}
 	
-
+	
 }

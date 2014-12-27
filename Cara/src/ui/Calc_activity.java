@@ -2,12 +2,16 @@ package ui;
 import javax.rmi.CORBA.Util;
 import javax.swing.*;
 
+import calc.Point;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
 public class Calc_activity extends JFrame{
 	private int Mx = 1200, My = 820;
+
+	private int lineX1,lineY1,lineX2,lineY2;
 	private JPanel pnlCon;//内容pnl
 	public JPanel pnlData;//图像的pnl
 	private JPanel pnlBack;//背景pnl
@@ -21,8 +25,12 @@ public class Calc_activity extends JFrame{
 	private boolean imgread;
 	private String strImg;
 	private ImageIcon imgData;
-	public Calc_activity(){
+	private DrawLinePanel tempdlp;
+	private Point PO;
+	private Calc_activity CA;
+	public Calc_activity(Mode_decide MD){
 		super("射电暴计算 Cara3.0");
+		CA = this;
 		imgread = false;
 		ImageIcon bg = new ImageIcon("uisource/calc/background.png");
 		this.setResizable(false);
@@ -57,9 +65,17 @@ public class Calc_activity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				JFrame mainF = new Mode_decide();  
-				dispose();
-				
+				if(imgread){
+					double ANS = PO.handler(lineX1, lineX2, lineY1, lineY2);
+					System.out.println(lineX1);
+					System.out.println(lineX2);
+					System.out.println(lineY1);
+					System.out.println(lineY2);
+
+					System.out.println(ANS);
+					JOptionPane.showMessageDialog(null, " 射电暴速度为： "+ANS+"km/s", " 计算结果 ", JOptionPane.OK_OPTION);
+				}
+								
 			}
 		});
 		this.btnCalc.setBounds(440,50,150,70);
@@ -77,6 +93,13 @@ public class Calc_activity extends JFrame{
 					System.out.println(strImg);
 //		            imgData=new ImageIcon(strImg).getImage();
 		            imgData = new ImageIcon(strImg);
+		            try {
+						PO = new Point(strImg);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            
 		            lbDataImg = new JLabel(imgData);
 		            if(imgread){
 		            	pnlData.setVisible(false);//隐藏掉
@@ -85,7 +108,8 @@ public class Calc_activity extends JFrame{
 		            else{
 		            	imgread = true;
 		            }
-		            pnlData=new DrawLinePanel(imgData.getImage());
+		            tempdlp = new DrawLinePanel(imgData.getImage(),CA);
+		            pnlData = tempdlp;
 		            pnlData.setBounds(600-(imgData.getIconWidth()/2), (210+175-(imgData.getIconHeight()/2)), imgData.getIconWidth(),imgData.getIconHeight()); 
 		            pnlData.setLayout(null);
 		            pnlData.setOpaque(false);
@@ -113,6 +137,13 @@ public class Calc_activity extends JFrame{
 
 		this.setVisible(true);
 	}
+	public void setData(int x1,int y1,int x2,int y2){
+		lineX1 = x1;
+		lineY1 = y1;
+		lineX2 = x2;
+		lineY2 = y2;
+	
+	}
     public static JButton createJButton(String imgIcon, String imgRO, String imgPre,ActionListener listener) {  
         JButton jb = new JButton();  
         jb.setBorderPainted(false);  
@@ -128,12 +159,12 @@ public class Calc_activity extends JFrame{
         jb.addActionListener(listener);  
         return jb;  
     }  
-	public static void main(String[] args){
-
-		Calc_activity example=new Calc_activity();
-
-		System.out.println("Mode decide Frame");
-	}
+//	public static void main(String[] args){
+//
+//		Calc_activity example=new Calc_activity();
+//
+//		System.out.println("Mode decide Frame");
+//	}
 	public void redd(){
 		this.repaint();
 	}
