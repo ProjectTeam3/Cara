@@ -31,8 +31,13 @@ public class FileDownload {
     
     private static final String [] FILE_TYPES={"文件","目录","符号链接","未知类型"}; 
     
-   /* public static void main(String[] args) { 
-         setConfigFile("d://setup.txt");//设置配置文件路径 
+   /* public static void main(String args[]){
+    	FileDownload fd= new FileDownload();
+    	fd.handler("2001","07","01");
+    } */
+    public boolean handler(String year, String month, String day) { 
+    	 boolean success=false;
+         setConfigFile("setup.txt");//设置配置文件路径 
          connectServer(); 
          listAllRemoteFiles();//列出所有文件和目录 
          changeWorkingDirectory("wdc");//进入文件夹webroot 
@@ -40,7 +45,7 @@ public class FileDownload {
          changeWorkingDirectory("data");
          changeWorkingDirectory("learmonth");
          changeWorkingDirectory("images");
-         changeWorkingDirectory("00");
+         changeWorkingDirectory(year.substring(2, 4));
          //listRemoteFiles("*.gif");//列出webroot目录下所有jsp文件 
          try {
 			ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
@@ -48,22 +53,24 @@ public class FileDownload {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-         loadFile("20000615spectrograph.gif","20000615spectrograph.gif");
+         success=loadFile(year+month+day+"spectrograph.gif",year+month+day+"spectrograph.gif");
          closeConnect();//关闭连接 
-     } */
+         return success;
+     } 
     
     /** 
       * 上传文件 
       * @param localFilePath--本地文件路径 
       * @param newFileName--新的文件名 
      */ 
-    public static void uploadFile(String localFilePath,String newFileName){ 
+    public static boolean uploadFile(String localFilePath,String newFileName){ 
+    	 boolean flag=false;
          connectServer(); 
         //上传文件 
          BufferedInputStream buffIn=null; 
         try{ 
              buffIn=new BufferedInputStream(new FileInputStream(localFilePath)); 
-             ftpClient.storeFile(newFileName, buffIn); 
+             flag=ftpClient.storeFile(newFileName, buffIn); 
          }catch(Exception e){ 
              e.printStackTrace(); 
          }finally{ 
@@ -74,6 +81,7 @@ public class FileDownload {
                  e.printStackTrace(); 
              } 
          } 
+        return flag;
      } 
     
     /** 
@@ -81,13 +89,14 @@ public class FileDownload {
       * @param remoteFileName --服务器上的文件名 
       * @param localFileName--本地文件名 
      */ 
-    public static void loadFile(String remoteFileName,String localFileName){ 
+    public static boolean loadFile(String remoteFileName,String localFileName){ 
+    	boolean flag=false;
          connectServer(); 
         //下载文件 
          BufferedOutputStream buffOut=null; 
         try{ 
              buffOut=new BufferedOutputStream(new FileOutputStream(localFileName)); 
-             ftpClient.retrieveFile(remoteFileName, buffOut); 
+             flag=ftpClient.retrieveFile(remoteFileName, buffOut); 
          }catch(Exception e){ 
              e.printStackTrace(); 
          }finally{ 
@@ -98,6 +107,7 @@ public class FileDownload {
                  e.printStackTrace(); 
              } 
          } 
+        return flag;
      } 
     
     /** 
