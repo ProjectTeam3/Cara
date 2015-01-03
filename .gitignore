@@ -3,9 +3,13 @@
 .project  
 /metadata
 .metadata/
+.metadata/*
 /.metadata
 .settings/  
 .log
 .metadata/.log
 .metadata/version.ini
 *.xmi
+*.log
+*.resources
+.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
