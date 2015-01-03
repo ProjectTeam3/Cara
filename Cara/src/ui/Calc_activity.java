@@ -75,7 +75,7 @@ public class Calc_activity extends JFrame{
 					System.out.println(lineY2);
 
 					System.out.println(ANS);
-					JOptionPane.showMessageDialog(null, " 射电暴速度为： "+ANS+"km/s", " 计算结果 ", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, " 射电暴速度为： "+ANS+" m/s", " 计算结果 ", JOptionPane.OK_OPTION);
 				}
 								
 			}

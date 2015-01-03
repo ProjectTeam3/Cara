@@ -12,7 +12,9 @@ public class Mode_decide extends JFrame{
 	private JPanel pnlBack;//创建面板
 	private JButton btnToCountFrm;//创建按钮1
 	private JButton btnToSQL;//创建按钮2
+	private JButton btnToOb;//创建按钮3
 	private JLabel lbBack;
+	private JLabel imgtest;
 	
 	public Mode_decide(){
 		super("Welcome to use Cara3.0");
@@ -31,7 +33,6 @@ public class Mode_decide extends JFrame{
 		this.btnPane=new JPanel();//初始化面板
 		this.btnPane.setLayout(null);
 		this.btnPane.setOpaque(false);
-//		this.lbTitle
 		this.btnToCountFrm=createJButton("uisource/btn10.png","uisource/btn11.png","uisource/btn12.png",new ActionListener() {
 			
 			@Override
@@ -42,7 +43,7 @@ public class Mode_decide extends JFrame{
 				
 			}
 		});
-		this.btnToCountFrm.setBounds(310,200,240,300);
+		this.btnToCountFrm.setBounds(140,200,240,300);
 		this.btnPane.add(btnToCountFrm);
 		this.btnToSQL=createJButton("uisource/btn20.png","uisource/btn21.png","uisource/btn22.png",new ActionListener() {
 			
@@ -53,7 +54,18 @@ public class Mode_decide extends JFrame{
 			}
 		});
 		this.btnPane.add(btnToSQL);
-		this.btnToSQL.setBounds(650, 200, 240, 300);
+		this.btnToSQL.setBounds(600-120, 200, 240, 300);
+		this.btnToOb=createJButton("uisource/btn30.png","uisource/btn31.png","uisource/btn32.png",new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				JFrame mainF = new DataObType(); 
+				dispose();
+			}
+		});
+		this.btnPane.add(btnToOb);
+		this.btnToOb.setBounds(1200-240-140, 200, 240, 300);
 		this.add(this.btnPane);
 		this.setVisible(true);
 	}
