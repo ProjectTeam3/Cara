@@ -4,6 +4,8 @@
 /metadata
 .metadata/
 .metadata/*
+.Cara/settings/*
+.Cara/bin/*
 /.metadata
 .settings/  
 .log
