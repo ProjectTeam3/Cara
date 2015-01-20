@@ -1,0 +1,154 @@
+package com.alex.MineSweeper;
+
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.border.Border;
+
+public class MineSweeper {
+	int columns=8;
+	int rows=8;
+	int numberOfMines=10;
+	
+	JFrame frame = new JFrame("扫雷");
+	JPanel minePanel = new JPanel();
+	JLabel mineRemainingLabel = new JLabel("剩余:");
+	JLabel mineFoundLabel = new JLabel("已找到: 0");
+	JLabel author1 = new JLabel("制作者：王珏 121220094");
+	JLabel author2 = new JLabel("袁延钊121250198");
+	JLabel Department = new JLabel("计算机科学与技术系");
+	JButton[][] mineButton;
+	Dimension buttonSize = new Dimension(20,20);
+	
+	MineField mineField;
+	MineSweeperMouseListener mouseListener;
+	MineSweeperActionListener actionListener;
+	MineSweeperHelper helper;
+	
+	
+	public MineSweeper(){
+		helper = new MineSweeperHelper(this);
+		actionListener = new MineSweeperActionListener(this,helper);
+		mouseListener = new MineSweeperMouseListener(this,helper);
+		init();
+	}
+	void init(){
+		mineButton= new JButton[rows][columns];
+		for(int i=0; i<rows;i++){
+			for(int j=0;j<columns;j++){
+				JButton currentButton =new JButton();
+				mineButton[i][j] = currentButton;
+				currentButton.setPreferredSize(buttonSize);
+				currentButton.setMaximumSize(buttonSize);
+				currentButton.setMinimumSize(buttonSize);
+				currentButton.addMouseListener(mouseListener);
+				currentButton.setEnabled(true);
+				currentButton.setText("");
+				currentButton.setIcon(null);
+			}
+		}
+		minePanel.setLayout(new GridLayout(rows,columns));
+		for(int i=0; i<rows;i++){
+			for(int j=0;j<columns;j++){
+				minePanel.add(mineButton[i][j]);
+			}
+		}
+		mineField = new MineField(rows, columns, numberOfMines);
+	}
+	
+	private void addAndArrangePanels(JFrame frame){
+		Border paddingBorder = BorderFactory.createEmptyBorder(5,5,5,5);
+		JPanel controlPanel = new JPanel();
+		mineFoundLabel.setBorder(paddingBorder);
+		mineFoundLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		mineRemainingLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		mineRemainingLabel.setBorder(paddingBorder);
+		mineRemainingLabel.setText("剩余: "+ mineField.getMinesRemaining());
+		controlPanel.add(mineFoundLabel);
+		controlPanel.add(mineRemainingLabel);
+		GridLayout gridlayout = new GridLayout(1,5);
+		controlPanel.setLayout(gridlayout);
+		JPanel author1Panel = new JPanel();
+		author1.setAlignmentX(Component.CENTER_ALIGNMENT);
+		author1Panel.add(author1);
+		author1Panel.setLayout(gridlayout);
+		JPanel author2Panel = new JPanel();
+		author2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		author2Panel.add(author2);
+		author2Panel.setLayout(gridlayout);
+		JPanel DPanel = new JPanel();
+		Department.setAlignmentX(Component.CENTER_ALIGNMENT);
+		DPanel.add(Department);
+		DPanel.setLayout(gridlayout);
+		frame.getContentPane().add(DPanel);
+		frame.getContentPane().add(author1Panel);
+		frame.getContentPane().add(author2Panel);
+		frame.getContentPane().add(controlPanel);
+		frame.getContentPane().add(minePanel);
+	}
+	private void addMenu(JFrame frame){
+		JMenu file = new JMenu("选项(f)");
+		file.setMnemonic('f');
+		JMenuItem newItem = new JMenuItem("新游戏(n)");
+		newItem.setMnemonic('n');
+		newItem.addActionListener(actionListener);
+		file.add(newItem);
+		ButtonGroup sizeOption = new ButtonGroup();
+		JRadioButtonMenuItem smallOption = new JRadioButtonMenuItem("小型(s) (8x8,10 mines)");
+		smallOption.setMnemonic('s');
+		smallOption.addActionListener(actionListener);
+		sizeOption.add(smallOption);
+		file.add(smallOption);
+		JRadioButtonMenuItem mediumOption=
+				new JRadioButtonMenuItem("中型(m) (16x16, 40 mines)");
+		mediumOption.setMnemonic('m');
+		mediumOption.addActionListener(actionListener);
+		sizeOption.add(mediumOption);
+		file.add(mediumOption);
+		JRadioButtonMenuItem largeOption=
+				new JRadioButtonMenuItem("大型(l) (16x32, 60 mines)");
+		largeOption.setMnemonic('l');
+		largeOption.addActionListener(actionListener);
+		sizeOption.add(largeOption);
+		file.add(largeOption);
+		JMenuItem exitItem = new JMenuItem("退出(x)");
+		exitItem.setMnemonic('x');
+		exitItem.addActionListener(actionListener);
+		file.add(exitItem);
+		JMenuBar menuBar= new JMenuBar();
+		menuBar.add(file);
+		frame.setJMenuBar(menuBar);
+		
+	}
+	
+	private void createAndShowGui(){
+		frame.setIconImage(MineIcon.getIcon());
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane()
+		.setLayout(new BoxLayout(frame.getContentPane(),BoxLayout.Y_AXIS));
+		
+		addAndArrangePanels(frame);
+		addMenu(frame);
+		
+		frame.pack();
+		frame.setVisible(true);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MineSweeper mineSweeper = new MineSweeper();
+		mineSweeper.createAndShowGui();
+	}
+
+}
