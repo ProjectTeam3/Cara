@@ -39,29 +39,39 @@ public class FileDownload {
     	 boolean success=false;
          setConfigFile("setup.txt");//设置配置文件路径 
          connectServer(); 
-         listAllRemoteFiles();//列出�?有文件和目录 
+         listAllRemoteFiles();//列出�?有文件和目录 
          changeWorkingDirectory("wdc");//进入文件夹webroot 
          changeWorkingDirectory("wdc_spec");
          changeWorkingDirectory("data");
          changeWorkingDirectory("learmonth");
          changeWorkingDirectory("images");
+         System.out.println("year=\""+year+"\" ");
+         System.out.println("month=\""+month+"\" ");
+         System.out.println("day=\""+day+"\" ");
          changeWorkingDirectory(year.substring(2, 4));
          //listRemoteFiles("*.gif");//列出webroot目录下所有jsp文件 
          try {
 			ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
          success=loadFile(year+month+day+"spectrograph.gif",year+month+day+"spectrograph.gif");
-         closeConnect();//关闭连接 
+//         closeConnect();//关闭连接 
+         try {
+			ftpClient.abort();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
          return success;
      } 
     
     /** 
       * 上传文件 
       * @param localFilePath--本地文件路径 
-      * @param newFileName--新的文件�? 
+      * @param newFileName--新的文件�? 
      */ 
     public static boolean uploadFile(String localFilePath,String newFileName){ 
     	 boolean flag=false;
@@ -87,7 +97,7 @@ public class FileDownload {
     /** 
       * 下载文件 
       * @param remoteFileName --服务器上的文件名 
-      * @param localFileName--本地文件�? 
+      * @param localFileName--本地文件�? 
      */ 
     public static boolean loadFile(String remoteFileName,String localFileName){ 
     	boolean flag=false;
@@ -111,14 +121,14 @@ public class FileDownload {
      } 
     
     /** 
-      * 列出服务器上�?有文件及目录 
+      * 列出服务器上�?有文件及目录 
      */ 
     public static void listAllRemoteFiles(){ 
          listRemoteFiles("*"); 
      } 
 
     /** 
-      * 列出服务器上文件和目�? 
+      * 列出服务器上文件和目�? 
       * @param regStr --匹配的正则表达式 
      */ 
      @SuppressWarnings("unchecked") 
@@ -131,7 +141,7 @@ public class FileDownload {
             else{ 
                  TreeSet<FTPFile> fileTree=new TreeSet( 
                         new Comparator(){ 
-                            //先按照文件的类型排序(倒排)，然后按文件名顺序排�? 
+                            //先按照文件的类型排序(倒排)，然后按文件名顺序排�? 
                             public int compare(Object objFile1,Object objFile2){ 
                                 if(objFile1==null) 
                                     return -1; 
@@ -184,7 +194,7 @@ public class FileDownload {
      } 
     
     /** 
-      * 设置传输文件的类型[文本文件或�?�二进制文件] 
+      * 设置传输文件的类型[文本文件或�?�二进制文件] 
       * @param fileType--BINARY_FILE_TYPE、ASCII_FILE_TYPE 
      */ 
     public static void setFileType(int fileType){ 
@@ -207,7 +217,7 @@ public class FileDownload {
 
     /** 
       * 设置参数 
-      * @param configFile --参数的配置文�? 
+      * @param configFile --参数的配置文�? 
      */ 
     private static void setArg(String configFile){ 
          property=new Properties(); 
@@ -253,7 +263,7 @@ public class FileDownload {
                      System.err.println("FTP server refused connection."); 
                  } 
              } catch (Exception e) { 
-                 System.err.println("登录ftp服务器�??"+ip+"】失�?"); 
+                 System.err.println("登录ftp服务器�??"+ip+"】失�?"); 
                  e.printStackTrace(); 
              } 
          } 
@@ -273,7 +283,7 @@ public class FileDownload {
      } 
     
     /** 
-      * 返回到上�?层目�? 
+      * 返回到上�?层目�? 
      */ 
     public static void changeToParentDirectory(){ 
         try{ 
@@ -297,7 +307,7 @@ public class FileDownload {
      } 
     
     /** 
-      * 重命名文�? 
+      * 重命名文�? 
       * @param oldFileName --原文件名 
       * @param newFileName --新文件名 
      */ 
@@ -311,7 +321,7 @@ public class FileDownload {
      } 
     
     /** 
-      * 设置FTP客服端的配置--�?般可以不设置 
+      * 设置FTP客服端的配置--�?般可以不设置 
       * @return 
      */ 
     private static FTPClientConfig getFtpConfig(){ 

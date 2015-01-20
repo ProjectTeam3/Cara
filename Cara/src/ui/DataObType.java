@@ -68,6 +68,7 @@ public class DataObType extends JFrame{
 		ButtonGroup ImageTypeGroup = new ButtonGroup();
 		
 		jcbE171 = new  JRadioButton("E171");
+	
 		jcbE171.addActionListener(new ActionListener() {
 			
 			@Override

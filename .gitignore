@@ -15,3 +15,7 @@
 *.log
 *.resources
 .metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
+Cara/.settings/org.eclipse.core.resources.prefs
+Cara/.classpath
+Cara/.classpath
+*.classpath
