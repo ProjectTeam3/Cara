@@ -2,6 +2,8 @@ package ui;
 import javax.rmi.CORBA.Util;
 import javax.swing.*;
 
+import Database.FileDownload;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -50,6 +52,8 @@ public class Mode_decide extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				JFrame mainF  = new DB_activity();
+				dispose();
 				
 			}
 		});
@@ -92,3 +96,4 @@ public class Mode_decide extends JFrame{
 		System.out.println("Mode decide Frame");
 	}
 }
+//gittest

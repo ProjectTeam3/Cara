@@ -68,7 +68,7 @@ public class DataObType extends JFrame{
 		ButtonGroup ImageTypeGroup = new ButtonGroup();
 		
 		jcbE171 = new  JRadioButton("E171");
-	
+
 		jcbE171.addActionListener(new ActionListener() {
 			
 			@Override
@@ -81,6 +81,7 @@ public class DataObType extends JFrame{
 		});
 		jcbE171.setBounds(lx+150, 200, 100, 25);
 		jcbE171.setOpaque(false); 
+		jcbE171.setEnabled(true);
 //		jcbE171=createJCheckCox("uisource/btn30.png","uisource/btn31.png","uisource/btn32.png");
 		jcbE171.setForeground(Color.WHITE);
 		conPane.add(jcbE171);
@@ -135,7 +136,7 @@ public class DataObType extends JFrame{
 		ImageTypeGroup.add(jcbE195);
 		ImageTypeGroup.add(jcbE284);
 		ImageTypeGroup.add(jcbE304);
-		
+//		ImageTypeGroup.setSelected(, true);
 		ButtonGroup timeGroup = new ButtonGroup();
 		jcb0100 = new JRadioButton("0100");
 		jcb0100.setBounds(lx+525, 250, 80, 25);
@@ -193,7 +194,7 @@ public class DataObType extends JFrame{
 		JScrollPane jsp = new JScrollPane(jlResolution); 
 		jsp.setBounds(lx+300, 200, 100, 44);
 		conPane.add(jsp);
-		tfData1 = new JTextField();
+		tfData1 = new JTextField("20141201");
 		tfData1.setBounds(lx+500, 200, 100, 25);
 		conPane.add(tfData1);
 		lbMAIMENG = new JLabel("~");
@@ -242,6 +243,11 @@ public class DataObType extends JFrame{
 				
 			}
 		});
+		datatype =  "eit_171";
+		jcb0100.setText("0100");
+		jcb1300.setText("1300");
+		datatime = ""+1300;
+		resolutionSzie = 512;
 		this.btnlatest.setBounds(525,400,150,70);
 		this.conPane.add(btnlatest);
 		this.add(this.conPane);

@@ -1,6 +1,7 @@
 package ui;
 import javax.rmi.CORBA.Util;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 
 import calc.Point;
 
@@ -89,6 +90,22 @@ public class Calc_activity extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				JFileChooser imgChooser=new JFileChooser();
+				imgChooser.setFileFilter(new FileFilter() {
+					
+					@Override
+					
+					public String getDescription() {
+						return"*.jpg,*.gif";
+						}
+					@Override
+					public boolean accept(File f) {
+						// TODO Auto-generated method stub
+						if (f.isDirectory()) {
+							return true;
+							}
+						return f.getName().endsWith(".jpg") || f.getName().endsWith(".gif")|| f.getName().endsWith(".bmp")|| f.getName().endsWith(".png");
+					}
+				});  
 				int i=imgChooser.showOpenDialog(Calc_activity.this);
 				if(i==imgChooser.APPROVE_OPTION){
 					strImg = imgChooser.getSelectedFile().getPath();
@@ -125,7 +142,8 @@ public class Calc_activity extends JFrame{
 //		    		pnlCon.add(pnlData);
 		    		
 		    		redd();
-				}	
+					}
+				
 			}
 
 			private int min(int a, int b) {
