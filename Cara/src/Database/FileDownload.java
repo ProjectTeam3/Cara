@@ -43,7 +43,7 @@ public class FileDownload {
          changeWorkingDirectory("wdc");//进入文件夹webroot 
          changeWorkingDirectory("wdc_spec");
          changeWorkingDirectory("data");
-         changeWorkingDirectory("learmonth");
+         changeWorkingDirectory("culgoora");
          changeWorkingDirectory("images");
          System.out.println("year=\""+year+"\" ");
          System.out.println("month=\""+month+"\" ");

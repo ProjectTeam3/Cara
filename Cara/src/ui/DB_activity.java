@@ -84,7 +84,7 @@ public class DB_activity extends JFrame {
 				
 			}
 		});
-		this.btnBack.setBounds(270,550,150,70);
+		this.btnBack.setBounds(600-75,550,150,70);
 		this.pnlCon.add(btnBack);
 		this.btnSql=createJButton("uisource/btnsql1.png","uisource/btnsql2.png","uisource/btnsql3.png",new ActionListener() {
 			
@@ -96,8 +96,8 @@ public class DB_activity extends JFrame {
 				
 			}
 		});
-		this.btnSql.setBounds(600-225,300,450,70);
-		this.pnlCon.add(btnSql);
+		this.btnSql.setBounds(600-225,400,450,70);
+//		this.pnlCon.add(btnSql);
 		this.btnFtp=createJButton("uisource/btnftp1.png","uisource/btnftp2.png","uisource/btnftp3.png",new ActionListener() {
 			
 			@Override
@@ -124,7 +124,7 @@ public class DB_activity extends JFrame {
 				dispose();
 			}
 		});
-		this.btnFtp.setBounds(600-225,200,450,70);
+		this.btnFtp.setBounds(600-225,300,450,70);
 		this.pnlCon.add(btnFtp);
 		this.add(this.pnlCon);
 
@@ -168,7 +168,7 @@ public class DB_activity extends JFrame {
 	public JPanel year(){
 		JPanel contentPane=new JPanel();
 	    contentPane.setBorder(new EmptyBorder(5,5,5,5));
-		contentPane.setBounds(600-75-200,100,150,48);
+		contentPane.setBounds(600-75-200,150,150,48);
 //	    this.setContentPane(contentPane);
 		contentPane.setBackground(Color.black);  
 //		contentPane.setFocusPainted(false);  
@@ -187,7 +187,7 @@ public class DB_activity extends JFrame {
 	public JPanel month(){
 		JPanel contentPane=new JPanel();
 	    contentPane.setBorder(new EmptyBorder(5,5,5,5));
-		contentPane.setBounds(600-75,100,150,48);
+		contentPane.setBounds(600-75,150,150,48);
 //	    this.setContentPane(contentPane);
 		contentPane.setBackground(Color.black);  
 //		contentPane.setFocusPainted(false);  
@@ -206,7 +206,7 @@ public class DB_activity extends JFrame {
 	public JPanel day(){
 		JPanel contentPane=new JPanel();
 	    contentPane.setBorder(new EmptyBorder(5,5,5,5));
-		contentPane.setBounds(600-75+200,100,150,48);
+		contentPane.setBounds(600-75+200,150,150,48);
 //	    this.setContentPane(contentPane);
 		contentPane.setBackground(Color.black);  
 //		contentPane.setFocusPainted(false);  

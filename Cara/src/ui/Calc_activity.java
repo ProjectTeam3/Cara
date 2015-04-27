@@ -1,12 +1,16 @@
 package ui;
+import javax.imageio.ImageIO;
 import javax.rmi.CORBA.Util;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
+import calc.ImageProcessing;
 import calc.Point;
+import calc.ResponsivePoint;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class Calc_activity extends JFrame{
@@ -19,8 +23,11 @@ public class Calc_activity extends JFrame{
 	private JButton btnCalc;
 	private JButton btnChsSQL;
 	private JButton btnChsImg;
+	private JButton btnImgPro;
 //	private JScrollPane jScrollPane2;
 	private ScrollPaneDemo SPD;
+	private boolean imgProFlag = false; 
+	private ScrollPaneDemo SPD_temp;
 	private JButton btnBack;
 	private JLabel lbBack;
 	private JLabel lbDataImg;
@@ -28,8 +35,11 @@ public class Calc_activity extends JFrame{
 	private boolean imgread;
 	private String strImg;
 	private ImageIcon imgData;
-	private DrawLinePanel tempdlp;
+	private ImageIcon imgData_temp;
+	private int imgc=0;
+//	private DrawLinePanel tempdlp;
 	private Point PO;
+	private ResponsivePoint RPO;
 	private Calc_activity CA;
 	public Calc_activity(Mode_decide MD){
 		super("射电暴计算 Cara3.0");
@@ -60,7 +70,7 @@ public class Calc_activity extends JFrame{
 				
 			}
 		});
-		this.btnBack.setBounds(270,50,150,70);
+		this.btnBack.setBounds(270-85,50,150,70);
 		this.pnlCon.add(btnBack);
 		
 		this.btnCalc=createJButton("uisource/calc/btncalc1.png","uisource/calc/btncalc2.png","uisource/calc/btncalc3.png",new ActionListener() {
@@ -69,6 +79,8 @@ public class Calc_activity extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				if(imgread){
+					if (imgProFlag==false){
+						System.out.println("大图");
 					double ANS = PO.handler(lineX1, lineX2, lineY1, lineY2);
 					System.out.println(lineX1);
 					System.out.println(lineX2);
@@ -77,11 +89,26 @@ public class Calc_activity extends JFrame{
 
 					System.out.println(ANS);
 					JOptionPane.showMessageDialog(null, " 射电暴速度为： "+ANS+" m/s", " 计算结果 ", JOptionPane.OK_OPTION);
+				
+					}
+					else {
+						System.out.println("小图");
+						double ANS = RPO.handler(lineX1, lineX2, lineY1, lineY2);
+						System.out.println(lineX1);
+						System.out.println(lineX2);
+						System.out.println(lineY1);
+						System.out.println(lineY2);
+
+						System.out.println(ANS);
+						JOptionPane.showMessageDialog(null, " 射电暴速度为： "+ANS+" m/s", " 计算结果 ", JOptionPane.OK_OPTION);
+					
+					
+					}
 				}
 								
 			}
 		});
-		this.btnCalc.setBounds(440,50,150,70);
+		this.btnCalc.setBounds(440-85,50,150,70);
 		this.pnlCon.add(btnCalc);
 		
 		this.btnChsImg = createJButton("uisource/calc/btnimg1.png","uisource/calc/btnimg2.png","uisource/calc/btnimg3.png",new ActionListener() {
@@ -110,7 +137,6 @@ public class Calc_activity extends JFrame{
 				if(i==imgChooser.APPROVE_OPTION){
 					strImg = imgChooser.getSelectedFile().getPath();
 					System.out.println(strImg);
-//		            imgData=new ImageIcon(strImg).getImage();
 		            imgData = new ImageIcon(strImg);
 		            try {
 						PO = new Point(strImg);
@@ -119,28 +145,16 @@ public class Calc_activity extends JFrame{
 						e.printStackTrace();
 					}
 		            
-		            lbDataImg = new JLabel(imgData);
+//		            lbDataImg = new JLabel(imgData);
 		           
 		            if(imgread){
-//		            	pnlData.setVisible(false);//隐藏掉
-//		            	pnlCon.remove(SPD);//删除panel中的控件
 		            	SPD.dispose();
 		            }  	
 		            else{
 		            	imgread = true;
 		            }
-		            tempdlp = new DrawLinePanel(imgData.getImage(),CA);
-//		            pnlData = tempdlp;
-		            SPD = new ScrollPaneDemo(imgData,CA);
-//		            pnlData = SPD.comeonbaby();
-//		            pnlData.setBounds(0,210,1200,350);
-//		            jScrollPane2 = new JScrollPane(lbDataImg);  
-//		   
-//		            jScrollPane2.setPreferredSize(new Dimension(1200, 350));
-//		            jScrollPane2.setBounds(600-(min(9999999,1200)/2), (210+175-(min(9999999,350)/2)), 1200,350); 
-//		            jScrollPane2.setBounds(0,210,1200,350);
-//		    		pnlCon.add(pnlData);
-		    		
+		        //    tempdlp = new DrawLinePanel(imgData.getImage(),CA);
+		            SPD = new ScrollPaneDemo(imgData,CA);   		
 		    		redd();
 					}
 				
@@ -152,23 +166,65 @@ public class Calc_activity extends JFrame{
 				else return b;
 			}
 		});
-		this.btnChsImg.setBounds(610,50,150,70);
+		this.btnChsImg.setBounds(610-85,50,150,70);
 		this.pnlCon.add(btnChsImg);
 		
 		this.btnChsSQL = createJButton("uisource/calc/btnsql1.png","uisource/calc/btnsql2.png","uisource/calc/btnsql3.png",new ActionListener() {
 			
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				JFrame dbF  = new DB_activity();
+				dispose();
+				
+			
+			}
+		});
+		this.btnChsSQL.setBounds(780-85,50,150,70);
+		this.pnlCon.add(btnChsSQL);	
+		
+		this.btnImgPro=createJButton("uisource/calc/btnimgpro1.png","uisource/calc/btnimgpro2.png","uisource/calc/btnimgpro3.png",new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				JFrame mainF = new Mode_decide();  
-				dispose();
+				if(imgProFlag==false){
+					try {
+						
+						BufferedImage Original=ImageIO.read(new File(strImg));
+						int startpixelx=170;
+						int startpixely=50;
+						int endpixelx=1730;
+						int endpixely=550;
+						int width = endpixelx-startpixelx;
+						int height = endpixely-startpixely;
+						BufferedImage cut=Original.getSubimage(startpixelx, startpixely, width, height);
+						ImageProcessing Ip=new ImageProcessing(cut);
+						ImageProcessing IMP = new ImageProcessing(cut);
+						IMP.process();
+						imgProFlag = true;
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					imgData_temp = new ImageIcon("new"+Integer.toString(imgc)+".gif");
+					imgc = (imgc+1)%5;
+					try {
+						RPO = new ResponsivePoint("new"+Integer.toString(imgc)+".gif");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					SPD_temp = new ScrollPaneDemo(imgData_temp,CA);  
+					System.out.println("IMG Processing");
+//					JOptionPane.showMessageDialog(null, " 射电暴速度为： "+ANS+" m/s", " 计算结果 ", JOptionPane.OK_OPTION);
 				
+								
 			}
 		});
-		this.btnChsSQL.setBounds(780,50,150,70);
-		this.pnlCon.add(btnChsSQL);	
+		this.btnImgPro.setBounds(950-85,50,150,70);
+		this.pnlCon.add(btnImgPro);
 		this.add(this.pnlCon);
-
 		this.setVisible(true);
 	}
 	public void setData(int x1,int y1,int x2,int y2){

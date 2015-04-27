@@ -24,7 +24,7 @@ public class ScrollPaneDemo extends JFrame implements MouseListener {
                 jsp = new JScrollPane(jp);
                 jp.addMouseListener(this);
                 getContentPane().add(jsp);
-                setSize(1200, 350);
+                setSize(im.getIconWidth(), im.getIconHeight());
 //                setDefaultCloseOperation(XIT_ON_CLOSE);
                 setVisible(true);
         }
